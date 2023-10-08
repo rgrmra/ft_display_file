@@ -126,7 +126,7 @@ int	ft_display_file(char *str)
 		ft_read(filepos);
 		ft_close(filepos);
 	}
-	return (st name conventionatus);
+	return (status);
 }
 ```
 <br>
