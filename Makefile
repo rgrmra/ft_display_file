@@ -1,4 +1,3 @@
-SHELL = /bin/bash
 NAME = ft_display_file
 SRCSDIR = srcs
 OBJSDIR = objs
@@ -9,7 +8,7 @@ FILES = main.c \
 	   ft_display_file.c
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = $(FILES:%.c=$(SRCSDIR)/%.c)
 OBJS = $(FILES:%.c=$(OBJSDIR)/%.o)
@@ -18,12 +17,12 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "Compiling $@"
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
 	@echo "Compiling $@"
 	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJSDIR)
