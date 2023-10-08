@@ -50,8 +50,8 @@ void    ft_putstr(char *str)
         ft_putchar(*str);
         str++;
     }
+    ft_putchar('\n');
 }
-ft_putchar('\n');
 ```
 <br>
 
