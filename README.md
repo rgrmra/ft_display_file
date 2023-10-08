@@ -45,8 +45,11 @@ Now, we will create the function `ft_putstr.c` that will display all the `string
 ```c
 void    ft_putstr(char *str)
 {
-    ft_putchar(*str);
-    str++;
+    while (*str != '\0')
+    {
+        ft_putchar(*str);
+        str++;
+    }
 }
 ft_putchar('\n');
 ```
