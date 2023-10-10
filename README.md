@@ -1,6 +1,6 @@
 # Exercise 27: display_file
 
-- Create a program called `ft_display_file` that display, on the standar output, only the content of the file given as argument.
+- Create a program called `ft_display_file` that display, on the standard output, only the content of the file given as argument.
 - The submission directory should have a `Makefile` with the following rules: `all`, `clean`, `fclean`. The binary will be called `ft_display_file`.
 - The `malloc` function is forbidden. You can only do this exercise by declaring a fixed-sized array.
 - All files given as arguments will be valid.
@@ -57,9 +57,9 @@ void    ft_putstr(char *str)
 
 ## ft_display_file.c
 
-Then, we will create the principal function of the program: `ft_display_file`, it will have the `open` `read` and `close` functions, and it will `write` with the `ft_putchar()` function. We will include the header `unistd.h` to have acess to the functions `read` and `close`, and the header `fcntl.h` to have access to the function `open` and the file access mode `O_RDONLY`.
+Then, we will create the principal function of the program: `ft_display_file`, it will have the `open` `read` and `close` functions, and it will `write` with the `ft_putchar()` function. We will include the header `unistd.h` to have access to the functions `read` and `close`, and the header `fcntl.h` to have access to the function `open` and the file access mode `O_RDONLY`.
 
-The `open` function will recive the name of the file and will try to open the file and return in the variable `filepos` the position of the file in the file descriptor. If it fails, the function will return 1 informing that something goes wrong.
+The `open` function will receive the name of the file and will try to open the file and return in the variable `filepos` the position of the file in the file descriptor. If it fails, the function will return 1 informing that something goes wrong.
 
 <br>
 
@@ -80,7 +80,7 @@ int	ft_open(char *filename, int *filepos)
 
 - **ft_read()**
 
-The `read` function will read the file informed in the file descriptor and will read every byte and display each one. If the `read` function return something different from 1 it will break the will and stop displaying anything.
+The `read` function will read the file informed in the file descriptor and will read every byte and display each one. If the `read` function return something different from 1 it will break the while and stop displaying anything.
 
 
 ```c
@@ -107,7 +107,7 @@ void	ft_close(int filepos)
 }
 ```
 
-We will define now the function that you be called by the main function. It will call the function `ft_open()`, `ft_read()` and `ft_close()`. If something goes right it will return 0 to the `main` function, if something goes wrong it will return 1.
+We will define now the function that will be called by the main function. It will call the function `ft_open()`, `ft_read()` and `ft_close()`. If something goes right it will return 0 to the `main` function, if something goes wrong it will return 1.
 
 <br>
 
@@ -133,7 +133,7 @@ int	ft_display_file(char *str)
 
 ## main.c
 
-In the end, we will create the main function, that will manage all the rules. If args are equals 2 it calls the function `ft_display_file()` passing the path and the name of the file; if args are equals 1 it will return 1 and display the message "File name missing."; if the args are greater than 2 it will return 1 and display the message "Too many arguments.".
+In the end, we will create the main function, that will manage all the rules. If _args_ are equals 2 it will call the function `ft_display_file()` passing the path and the name of the file; if _args_ are equals 1 it will return 1 and display the message "File name missing."; if the _args_ are greater than 2 it will return 1 and display the message "Too many arguments.".
 
 ```c
 int	main(int argc, char **argv)
@@ -158,10 +158,11 @@ For now, we just need to create the `Makefile` that will compile all the program
 <br>
 
 **The Variables:**
-- Variable `NAME` constains the name of the program;
-- Variable `SRCSDIR` constains the path of the sources;
-- Variable `OBJSDIR` constains the path of the objects;
-- Variable `FILES` constanis all the `.c` files of the project;
+
+- Variable `NAME` contains the name of the program;
+- Variable `SRCSDIR` contains the path of the sources;
+- Variable `OBJSDIR` contains the path of the objects;
+- Variable `FILES` contains all the `.c` files of the project;
 - Variable `CC` defines the compiler that will be used;
 - Variable `CFLAGS` defines all the flags that will be used by the compiler;
 - Variable `SRCS` includes the path of the sources to all the `.c` files;
@@ -170,17 +171,19 @@ For now, we just need to create the `Makefile` that will compile all the program
 <br>
 
 **The Targets:**
+
 - Target `all` calls for the program `$(NAME)`;
-- Target `$(NAME)` calls for the `$(OBJS)`, compile the program with the `$(CFLAGS)` and all `$(OBJS)` defining the program with the name `$(NAME)`;
+- Target `$(NAME)` calls for the `$(OBJS)`, compile the program with the `$(CFLAGS)` and all `$(OBJS)` defining the program with the `$(NAME)`;
 - Target `$(OBJSDIR)/%.o` calls for each `$(SRCSDIR)/%.c` files, compile each one with the `$(CFLAGS)` and `-c` and define the name of each `.o` file with the `-o` flag;
 - Target `clean` remove the `$(OBJSDIR)` and all the `.o` files;
-- Targer `fclean` do the same as the `clean` and remove the program binary;
+- Target `fclean` do the same as the `clean` and remove the program binary;
 - Target `re` do the same as the `fclean` and remake the project with the target `all`.
 
 <br>
 
 **The .PHONY:**
-- The target `.PHONY` defines all the targets that exists in the `Makefile`. If there are a program with the same name as the target in the directory the `make` could execute something wrongly. So defining the `.PHONY` we are saying that we want to execute the command, even if there are a file with the same name in the directory.
+
+- The target `.PHONY` defines all the targets that exists in the `Makefile`. If there are a program with the same name as the target in the directory, the `make` could execute something wrongly. So defining the `.PHONY` we are saying that we want to execute the command, even if there are a file with the same name in the directory.
 
 ```makefile
 NAME = ft_display_file
